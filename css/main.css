@@ -1,0 +1,177 @@
+/* Keyframes */ 
+
+@keyframes slideInFromLeft {
+0% {
+    transform: translateX(-100%);
+}
+100% {
+    transform: translateX(0);
+}
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+    }
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Everything */
+
+* {
+    margin: 0;
+    padding: 0;
+    background: rgb(38, 41, 51);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+
+.header {
+    box-shadow: 0 4px 2px -2px;
+    margin: 0;
+    padding: 0;
+    background: rgb(38, 41, 51);
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+}
+
+.name {
+    padding-left: 40px;
+    padding-top: 3px;
+    font-weight: 300;
+    color: white;
+    font-family: "Lato", sans-serif;
+    font-size: 1.1em;
+
+}
+
+.name span {
+    font-weight: 600;
+}
+
+.link-nav {
+    float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    font-family: "Roboto Condensed", sans-serif;
+    padding-right: 2em;
+}
+
+.link-nav li {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 3px;
+    background: rgb(38, 41, 51);
+    color: white;
+    font-size: 0.9em;
+    transition-duration: 500ms;
+}
+
+.link-nav li:hover {
+    color: rgb(242, 5, 60);
+}
+
+#header-CV {
+    color: rgb(242, 5, 60);
+    border: 3px rgb(242, 5, 60);
+}
+
+.header-CV:hover {
+    color: white;
+}
+
+/* Body */
+
+.intropage {
+    height: 100vh;
+    padding-top: 20vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: left;
+}
+
+.myname-mainpage {
+    color: white;
+    font-size: 1em;
+    margin-top: 6em;
+    margin-left: 6em;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 300;
+    animation: fadeIn 3000ms;
+}
+
+.name-mainpage {
+    font-size: 3em;
+    margin-left: 2em;
+    color: rgb(242, 5, 60);
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 700;
+    animation: 2s ease-out 0s 1 slideInFromLeft;
+}
+
+.introduction-mainpage {
+    color: white;
+    font-size: 1em;
+    margin-left: 6em;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 300;
+    animation: fadeIn 3000ms;
+}
+
+.description-mainpage {
+    color: grey;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 300;
+    animation-delay: 10s;
+    font-size: 1.2em;
+    margin-left: 5em;
+    margin-top: 6em;
+    margin-right: 5em;
+    animation: 2s ease-out 0s 1 slideInFromLeft;
+
+}
+
+.introduction span {
+    color: rgb(242, 5, 60);
+}
+
+.aboutpage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100vh;
+    background: rgb(38, 41, 51);
+}
+
+.aboutme-aboutpage  {
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 300;
+    animation: fadeIn 5000ms;
+}
+
+
