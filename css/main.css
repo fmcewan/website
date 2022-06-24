@@ -38,8 +38,8 @@ body {
 
 /* Header */
 
-.header {
-    box-shadow: 0 4px 2px -2px;
+.header-onpage {
+    /*box-shadow: 0 4px 2px -2px;*/
     margin: 0;
     padding: 0;
     background: rgb(38, 41, 51);
@@ -100,6 +100,12 @@ body {
     color: white;
 }
 
+/* Header Movement Classes */
+
+.scroll-down {
+    display: inline-block;
+}
+
 /* Body */
 
 .intropage {
@@ -145,7 +151,7 @@ body {
     font-family: 'Source Code Pro', monospace;
     font-weight: 300;
     animation-delay: 10s;
-    font-size: 1.2em;
+    font-size: 1em;
     margin-left: 5em;
     margin-top: 6em;
     margin-right: 5em;
