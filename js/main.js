@@ -1,16 +1,37 @@
-// Header movement logic
+// General functions
 
-const scrollUp = document.querySelector(".header")
-const scrolldDown = document.querySelector(".scroll-down")
-const previousScroll = 0;
-
-window.onscroll = function(e) {
-    if (scrollY > previousScroll) {
-        body.header-onpage.add(scrolldDown);
-        body.header-onpage.add(scrolldDown);
-    }
-    else {
-        body.header-onpage.remove(scrolldDown);
-        body.header-onpage.add(scrollUp)
-    }
+const sleep = (milliseconds) => {
+    return new Promise(resolve => setTImeout(resolve, milliseconds));
 }
+
+// Fade in animation
+
+const fadeInElements = document.querySelectorAll('.scroll');
+
+const observer = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            entry.target.classList.toggle("appear", entry.isIntersecting)
+            // if (entry.isIntersecting) {
+            //     observer.unobserve(entry.target)
+            // }
+        }) 
+    }, {
+        threshold: 1,
+    }
+)
+
+fadeInElements.forEach(element => {
+    observer.observe(element);
+})
+
+// Typewriting effect
+
+var typewriterText = document.getElementById('typewriter');
+
+var typewriter = new Typewriter(typewriterText, {
+    strings: ['Developer', 'Mathematician', 'Workaholic'],
+    autoStart: true,
+    loop: true,
+    delay: 150
+})

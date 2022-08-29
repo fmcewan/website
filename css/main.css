@@ -28,12 +28,28 @@
 * {
     margin: 0;
     padding: 0;
-    background: rgb(38, 41, 51);
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
     padding: 0;
+}
+
+
+a {
+    all: unset;
+}
+
+/* Javascript Function Styles */
+
+.scroll {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+}
+
+.scroll.appear {
+    opacity: 1;
 }
 
 /* Header */
@@ -51,6 +67,7 @@ body {
     justify-content: space-between;
     align-items: center;
     position: fixed;
+    /* box-shadow: 0 4px 2px -2px rgb(31, 34, 41); */
 }
 
 .name {
@@ -106,31 +123,35 @@ body {
     display: inline-block;
 }
 
-/* Body */
+/* Introduction Page */
 
 .intropage {
     height: 100vh;
-    padding-top: 20vh;
+    padding-top: 10vh;
+    background-color: rgb(38, 41, 51);
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: flex-start;
     align-content: left;
+    scroll-snap-align: start;
 }
 
 .myname-mainpage {
     color: white;
     font-size: 1em;
-    margin-top: 6em;
-    margin-left: 6em;
+    margin-top: 16vh;
+    margin-left: 20vh;
+    margin-right: 20vh;
     font-family: 'Source Code Pro', monospace;
     font-weight: 300;
     animation: fadeIn 3000ms;
 }
 
 .name-mainpage {
-    font-size: 3em;
-    margin-left: 2em;
+    font-size: 4em;
+    margin-left: 20vh;
+    margin-right: 20vh;
     color: rgb(242, 5, 60);
     font-family: 'Bebas Neue', cursive;
     font-weight: 700;
@@ -140,44 +161,248 @@ body {
 .introduction-mainpage {
     color: white;
     font-size: 1em;
-    margin-left: 6em;
+    margin-left: 20vh;
+    margin-top: 5vh;
+    margin-right: 20vh;
     font-family: 'Source Code Pro', monospace;
     font-weight: 300;
     animation: fadeIn 3000ms;
 }
 
 .description-mainpage {
-    color: grey;
+    color: lightgrey;
     font-family: 'Source Code Pro', monospace;
     font-weight: 300;
     animation-delay: 10s;
     font-size: 1em;
-    margin-left: 5em;
-    margin-top: 6em;
-    margin-right: 5em;
+    margin-left: 20vh;
+    margin-top: 10vh;
+    margin-right: 20vh;
     animation: 2s ease-out 0s 1 slideInFromLeft;
 
 }
+
+#typewriter {
+    font-size: 10vh;
+    margin-top: 2vh;
+    margin-left: 20vh;
+    color: lightgrey;
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 700;
+}
+
+/* .typewriter-animation{
+    animation: typewriter 5s steps(30) 1s infinite normal both,
+               blinkTextCursor 500ms steps(44) infinite normal;
+  } */
 
 .introduction span {
     color: rgb(242, 5, 60);
 }
 
+/* About Page */
+
 .aboutpage {
     display: flex;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
     height: 100vh;
-    background: rgb(38, 41, 51);
+    background-color: white;
+    scroll-snap-align: start;
 }
 
 .aboutme-aboutpage  {
-    color: white;
+    font-size: 4em;
+    padding: 10vh;
+    color: rgb(38, 41, 51);
     font-family: 'Bebas Neue', cursive;
-    font-weight: 300;
-    animation: fadeIn 5000ms;
+    font-weight: 700;
+    padding-bottom: 2vh;
 }
 
+.textimagecontainer-aboutpage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 30vh;
+    width: 80vh;
+    padding: 5vh;
+    background: white;
+    box-shadow: 0 4px 8px 8px rgb(211, 213, 221);
+    border-radius: 10px;
+}
 
+.description-aboutpage {
+    color: rgb(38, 41, 51);
+    font-family: 'Source Code Pro', monospace;
+    padding-right: 10vh;
+}
+
+.aboutme-textcontainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-aboutpage {
+    height: 30vh;
+}
+
+/* Projects Page */
+
+.projectspage {
+    height: 100vh;
+    background-color: rgb(38, 41, 51);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectstitle {
+    font-size: 4em;
+    margin-left: 20vh;
+    margin-right: 20vh;
+    color: rgb(242, 5, 60);
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 700;
+    padding-bottom: 2vh;
+
+}
+
+.slider {
+    position: relative;
+    width: 80vw;
+    height: 75vh;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 8px rgb(31, 34, 41);
+}
+
+.projects {
+    height: 80vh;
+    width: 500%;
+    display: flex;
+}
+
+.project1 {
+    width: 20%;
+    transition: 2s;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(38, 41, 51);
+}
+
+#project1-title {
+    color: white;
+}
+
+.project2 {
+    width: 20%;
+    transition: 2s;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+}
+
+#project2-title {
+    color: white;
+}
+
+.project3 {
+    width: 20%;
+    transition: 2s;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(242, 5, 60);
+}
+
+#project3-title {
+    color: white;
+}
+
+.projects input {
+    display: none;
+}
+
+/* Navigation for Slider */
+
+.navigation {
+    margin-top: -10vh;
+    width: 132vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.manual-btn {
+    border: 2px solid lightgray;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.manual-btn:not(:last-child) {
+    margin-right: 40px;
+}
+
+.manual-btn:hover {
+    background-color: white;
+}
+
+#project1:checked ~ .first {
+    margin-left: 0;
+}
+
+#project2:checked ~ .first {
+    margin-left: -20%;
+} 
+
+#project3:checked ~ .first {
+    margin-left: -40%;
+}
+
+#project1button {
+    margin-left: 70px;
+}
+
+/* Contact Page */
+
+.contactpage {
+    height: 100vh;
+    background-color:rgb(242, 5, 60);
+    scroll-snap-align: start;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 3000ms;
+}
+
+/* Footer */
+
+.footer {
+    height: 20vh;
+    background-color: rgb(38, 41, 51);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Source Code Pro', monospace;
+
+}
+
+.icons img {
+    height: 36px;
+    width: 36px;
+}
