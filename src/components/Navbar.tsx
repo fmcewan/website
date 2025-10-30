@@ -2,12 +2,19 @@ import gsap from 'gsap';
 import { useWindowScroll } from 'react-use'
 import { useEffect, useRef, useState } from 'react'
 
-const navItems = ['About', 'Projects', 'Experience'];
+const HamburgerIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+    </svg>
+);
+
+const navItems = ['Home', 'About', 'Projects', 'Experience'];
 
 export default function Navbar() {
     
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isNavVisible, setIsNavVisible] = useState(true);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     
     const navContainerRef = useRef<HTMLDivElement>(null);
     
@@ -43,28 +50,51 @@ export default function Navbar() {
     }, [isNavVisible])
 
     return (
-        <div ref={navContainerRef}
-        className="fixed top-4 z-50 h-16 border-none transition-all duration-700 inset-x-4 md:inset-x-8 lg:inset-x-14 text-white">
-            <header className="absolute top-1/2 w-full -translate-y-1/2">
-                <nav className="flex size-full items-center justify-between p-4">
-                    <div className="flex items-center gap-x-3">
-                        <a href="#hero" className="font-black">FRASER MCEWAN</a>
-                        <h1>|</h1>
-                        <a href="#contact" className="nav-hover-btn">HIRE ME</a>
-                    </div>
+        <header className="fixed top-10 z-50 sm:inset-x-8 lg:inset-x-14">
+            <nav className="relative flex h-16 items-center justify-between bg-blackgruvbox text-white border rounded-4xl">
+                
+                {/* Name and Hire Me Button */}
+                <div className=" ">
+                    FRASER MCEWAN
+                </div>
 
-                    <div className="flex h-full items-center">
-                        <div className="hidden md:flex md:items-center md:gap-x-12">
-                            {navItems.map((item) => (
-                                <a key={item} href={`#${item.toLowerCase()}`} className="nav-hover-btn">
-                                    {item}
-                                </a>    
-                            ))}
-                        </div>
+                {/* Desktop Menu */}
+                <div className="flex h-full items-center">
+                    <div className="hidden md:flex md:items-center gap-x-12">
+                        {navItems.map((item) => (
+                            <a key={item} href={`#${item.toLowerCase()}`} className="nav-hover-btn">
+                                {item}
+                            </a>    
+                        ))}
                     </div>
+                </div>
+                
+                {/* Mobile Menu Button */}
+                <div className="md:hidden">
+                    <button
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label="Toggle mobile menu"
+                        aria-expanded={isMobileMenuOpen}
+                    >
+                        <HamburgerIcon />
+                    </button>
+                </div>
 
-                </nav>
-            </header>
-        </div>
+            </nav>
+
+            {/* Mobile Menu */}
+            {isMobileMenuOpen && (
+                 <div className="md:hidden mt-2 bg-blackgruvbox text-white border rounded-2xl p-4">
+                    <nav className="flex flex-col items-center gap-y-4">
+                         {navItems.map((item) => (
+                            <a key={item} href={`#${item.toLowerCase()}`} className="nav-hover-btn w-full text-right p-2 rounded hover:bg-gray-700">
+                                {item}
+                            </a>    
+                        ))}
+                    </nav>
+                </div>
+            )}
+        </header>
     );
+
 }
