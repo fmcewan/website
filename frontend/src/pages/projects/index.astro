@@ -34,30 +34,148 @@ const projects = [
 
 <Layout title="Projects">
   <main class="container">
-    <Nav/>
+    <Nav />
 
-    <p class="section-label">projects</p>
-    <div class="projects">
-      {projects.map((project) => (
-        <a href={`/projects/${project.slug}`} class="project">
-          <div class="project-top">
-            <div class="project-left">
-              <i class={project.icon} style="font-size: 18px;"></i>
-              <span class="project-name">{project.name}</span>
+    <section class="section">
+      <p class="section-label">projects</p>
+      <p class="projects-intro">
+        A mix of academic work, personal projects, and things built out of curiosity.
+        Most are in <span>C++</span>, <span>Python</span>, or <span>TypeScript</span>.
+      </p>
+      <div class="projects">
+        {projects.map((project) => (
+          <a href={`/projects/${project.slug}`} class="project">
+            <div class="project-top">
+              <div class="project-left">
+                <i class={project.icon} style="font-size: 18px;"></i>
+                <span class="project-name">{project.name}</span>
+              </div>
+              <div class="project-right">
+                {project.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+                <span class="arrow">→</span>
+              </div>
             </div>
-            <div class="project-right">
-              {project.tags.map((tag) => (
-                <span class="tag">{tag}</span>
-              ))}
-              <span class="arrow">→</span>
-            </div>
-          </div>
-          <p class="project-desc">{project.description}</p>
-        </a>
-      ))}
-    </div>
+            <p class="project-desc">{project.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="section-label">in progress</p>
+      <p class="section-intro">Things currently being built. Check back.</p>
+      <div class="in-progress">
+        <div class="ip-row">
+          <span class="ip-name">chess-engine — browser port</span>
+          <span class="ip-status"><span class="ip-dot"></span> compiling to wasm</span>
+        </div>
+        <div class="ip-row">
+          <span class="ip-name">jot</span>
+          <span class="ip-status"><span class="ip-dot"></span> terminal-first markdown notes</span>
+        </div>
+        <div class="ip-row">
+          <span class="ip-name">flux</span>
+          <span class="ip-status"><span class="ip-dot"></span> statically typed compiled language</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+        <p class="section-label">github stats</p>
+        <p class="section-intro">Statistics pulled from GitHub profile. They might be impressive... or not.</p>
+        <div class="stats-grid" id="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value" id="stat-repos">—</span>
+          <span class="stat-label">repositories</span>
+          <span class="stat-sub">public</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-contributions">—</span>
+          <span class="stat-label">contributions</span>
+          <span class="stat-sub">last 12 months</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-streak">—</span>
+          <span class="stat-label">longest streak</span>
+          <span class="stat-sub">days in a row</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">73<span class="stat-value-small">%</span></span>
+          <span class="stat-label">top project</span>
+          <span class="stat-sub">qcp dissertation</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+        <div class="gh-grid" id="gh-grid"></div>
+        <div class="gh-meta">
+        <span class="gh-meta-text">github.com/fmcewan</span>
+        <span class="gh-meta-text">last 12 months</span>
+      </div>
+    </section>
 
     <Footer client:load />
   </main>
 </Layout>
 
+<script>
+  const username = 'fmcewan'
+
+  const grid = document.getElementById('gh-grid')
+
+  fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`)
+    .then(r => r.json())
+    .then(data => {
+      if (!grid) return
+      const contributions = data.contributions.slice(-364)
+
+      const total = contributions.reduce((sum: number, d: { count: number }) => sum + d.count, 0)
+
+      let longest = 0
+      let current = 0
+      contributions.forEach((day: { count: number }) => {
+        if (day.count > 0) {
+          current++
+          longest = Math.max(longest, current)
+        } else {
+          current = 0
+        }
+      })
+
+      contributions.forEach((day: { level: number }) => {
+        const cell = document.createElement('div')
+        cell.className = `gh-cell gh-${day.level}`
+        grid.appendChild(cell)
+      })
+
+      const contribEl = document.getElementById('stat-contributions')
+      const streakEl = document.getElementById('stat-streak')
+      if (contribEl) contribEl.textContent = total.toString()
+      if (streakEl) streakEl.textContent = longest.toString()
+    })
+    .catch(() => {
+      if (!grid) return
+      for (let i = 0; i < 364; i++) {
+        const cell = document.createElement('div')
+        const rand = Math.random()
+        const level = rand > 0.85 ? 4 : rand > 0.7 ? 3 : rand > 0.5 ? 2 : rand > 0.3 ? 1 : 0
+        cell.className = `gh-cell gh-${level}`
+        grid.appendChild(cell)
+      }
+    })
+
+  fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
+    .then(r => r.json())
+    .then((repos: { stargazers_count: number }[]) => {
+      const repoEl = document.getElementById('stat-repos')
+      if (repoEl) repoEl.textContent = repos.length.toString()
+    })
+    .catch(() => {})
+</script>

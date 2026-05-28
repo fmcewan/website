@@ -27,24 +27,6 @@ const Footer = () => {
   return (
     <footer style={styles.footer}>
       <span style={styles.motto}>compiling...</span>
-      <div style={styles.links}>
-        <a
-            href="https://github.com/fmcewan"
-            style={styles.link}
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-          GitHub
-        </a>
-        <a  
-            href="https://www.linkedin.com/in/fraser-mcewan-517186253/"
-            style={styles.link}
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-          LinkedIn
-        </a>
-      </div>
     </footer>
   )
 }

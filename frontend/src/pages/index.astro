@@ -24,20 +24,39 @@ projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
         <h1 class="hero-name">I'm a<br /><span>software engineer.</span></h1>
         <p class="hero-bio">
           I write software that's clean, considered, and built to last.
-          Drawn to hard problems, sharp tools, and the craft of engineering done well.
+          I'm drawn to hard problems and the craft of engineering done well.
         </p>
-        <span class="available">
-          <span class="available-dot"></span>
-          available for work
-        </span>
+        <div class="hero-links">
+          <a href="https://github.com/fmcewan" target="_blank" class="hero-link">
+            <i class="ti ti-brand-github" aria-hidden="true"></i> GitHub 
+          </a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" class="hero-link">
+            <i class="ti ti-brand-linkedin" aria-hidden="true"></i> LinkedIn 
+          </a>
+        </div>
       </div>
       <div class="hero-graph">
         <HeroGraph client:load />
       </div>
     </section>
 
-    <div class="divider"></div>
+    <div class="cta-block">
+      <div class="cta-status">
+        <span class="cta-dot"></span>
+        open to work
+      </div>
+      <h2 class="cta-heading">I'm looking for a <span>graduate role</span><br/>in software engineering.</h2>
+      <p class="cta-sub">
+      If you're building something interesting, I'd like to hear about it.
+      </p>
+      <div class="cta-actions">
+        <a href="/cv.pdf" target="_blank" class="cta-primary">Download my CV →</a>
+        <a href="mailto:frasermcewan6@gmail.com" class="cta-secondary">Get in touch →</a>
+      </div>
+    </div>
 
+    <div class="divider"></div>
+    
     <section class="section">
       <p class="section-label">selected projects</p>
       <div class="projects">

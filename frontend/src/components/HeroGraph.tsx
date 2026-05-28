@@ -20,6 +20,9 @@ const HeroGraph = () => {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
+    const dpr = window.devicePixelRatio || 1
+    canvas.width = W * dpr
+    canvas.height = H * dpr
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
@@ -62,7 +65,7 @@ const HeroGraph = () => {
     function draw(ts: number) {
       rafId = requestAnimationFrame(draw)
 
-      if (ts - lastMorph > 4000 && morphT >= 1) {
+      if (ts - lastMorph > 5000 && morphT >= 1) {
         startMorph()
         lastMorph = ts
       }
@@ -114,7 +117,7 @@ const HeroGraph = () => {
       ref={canvasRef}
       width={W}
       height={H}
-      style={{ display: 'block', width: '100%' }}
+      style={{ display: 'block', width: '100%', height: 'auto' }}
       aria-hidden="true"
     />
   )

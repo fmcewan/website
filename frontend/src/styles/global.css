@@ -38,3 +38,13 @@ nav ul {
 nav > div {
   display: none;
 }
+
+.container {
+  font-family: var(--font-mono);
+  width: 95%;
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 3rem 2.5rem 4rem;
+}
+
+

@@ -1,10 +1,3 @@
-.container {
-  font-family: var(--font-mono);
-  width: 95%;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 4rem;
-}
-
 .section-label {
   font-size: 11px;
   letter-spacing: 0.12em;
@@ -12,6 +5,18 @@
   color: #8b9ab0;
   margin-bottom: 1.5rem;
   font-weight: 400;
+}
+
+.section-intro {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #8b9ab0;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.section {
+  margin-bottom: 3rem;
 }
 
 .projects {
@@ -90,4 +95,137 @@
   font-size: 14px;
   color: #8b9ab0;
   transition: all 0.15s;
+}
+
+.projects-intro {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #8b9ab0;
+  font-weight: 300;
+  max-width: 1400px;
+  margin-bottom: 2.5rem;
+}
+
+.projects-intro span {
+  color: var(--accent);
+}
+
+.in-progress {
+  display: flex;
+  flex-direction: column;
+}
+
+.ip-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 0;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.ip-row:first-child {
+  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.ip-name {
+  font-size: 13px;
+  color: #f2f4f8;
+  font-weight: 400;
+}
+
+.ip-status {
+  font-size: 11px;
+  color: #8b9ab0;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #78a9ff;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.gh-grid {
+  display: grid;
+  grid-template-columns: repeat(52, 1fr);
+  gap: 2px;
+}
+
+.gh-cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+}
+
+.gh-0 { background: rgba(255, 255, 255, 0.04); }
+.gh-1 { background: rgba(120, 169, 255, 0.2); }
+.gh-2 { background: rgba(120, 169, 255, 0.45); }
+.gh-3 { background: rgba(120, 169, 255, 0.7); }
+.gh-4 { background: rgba(120, 169, 255, 0.95); }
+
+.gh-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.gh-meta-text {
+  font-size: 11px;
+  color: #8b9ab0;
+  font-weight: 300;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 300;
+  color: #78a9ff;
+  letter-spacing: -0.02em;
+}
+
+.stat-value-small {
+  font-size: 16px;
+}
+
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8b9ab0;
+  font-weight: 400;
+}
+
+.stat-sub {
+  font-size: 11px;
+  color: #8b9ab0;
+  font-weight: 300;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
