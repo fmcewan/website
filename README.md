@@ -1,6 +1,6 @@
 # fmcewan.dev
 
-Personal portfolio site.
+The code for my personal portfolio website.
 
 ## Stack
 
