@@ -26,7 +26,7 @@ const styles = {
 const Footer = () => {
   return (
     <footer style={styles.footer}>
-      <span style={styles.motto}>somewhere in Scotland, writing code</span>
+      <span style={styles.motto}>compiling...</span>
       <div style={styles.links}>
         <a
             href="https://github.com/fmcewan"

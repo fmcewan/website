@@ -30,6 +30,7 @@ const Nav = () => {
     <nav style={styles.nav}>
       <a href="/" style={styles.logo}>fmcewan.dev</a>
       <ul style={styles.links}>
+        <li><a href="/projects" className={styles.link}>projects</a></li>
         <li><a href="/tools" style={styles.link}>tools</a></li>
         <li><a href="/notes" style={styles.link}>notes</a></li>
         <li><a href="/reading" style={styles.link}>reading</a></li>

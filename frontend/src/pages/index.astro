@@ -7,6 +7,9 @@ import { getCollection } from 'astro:content'
 const posts = await getCollection('blog', ({ data }) => !data.draft)
 posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 const recentPosts = posts.slice(0, 3)
+
+const projects = await getCollection('projects')
+projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 ---
 
 <Layout title="Home">
@@ -14,11 +17,11 @@ const recentPosts = posts.slice(0, 3)
     <Nav client:load />
 
     <section class="hero">
-      <p class="hero-label">software engineer</p>
-      <h1 class="hero-name">Fraser<br /><span>builds things.</span></h1>
+      <p class="hero-label">Fraser McEwan</p>
+      <h1 class="hero-name">I'm a<br /><span> software engineer.</span></h1>
       <p class="hero-bio">
         I write software that's clean, considered, and built to last.
-        Drawn to hard problems, sharp tools, and the craft of engineering done well.
+        I'm drawn to hard problems, sharp tools, and the craft of engineering done well.
       </p>
       <span class="available">
         <span class="available-dot"></span>
@@ -31,16 +34,20 @@ const recentPosts = posts.slice(0, 3)
     <section class="section">
       <p class="section-label">selected projects</p>
       <div class="projects">
-        <a href="#" class="project">
-          <div class="project-left">
-            <span class="project-name">project-alpha</span>
-            <span class="project-desc">short description of what it does</span>
-          </div>
-          <div class="project-right">
-            <span class="project-tag">Go</span>
-            <span class="project-arrow">→</span>
-          </div>
-        </a>
+        {projects.map((project) => (
+          <a href={`/projects/${project.id}`} class="project">
+            <div class="project-left">
+              <span class="project-name">{project.data.title}</span>
+              <span class="project-desc">{project.data.description}</span>
+            </div>
+            <div class="project-right">
+              {project.data.tags.slice(0, 1).map((tag) => (
+                <span class="project-tag">{tag}</span>
+              ))}
+              <span class="project-arrow">→</span>
+            </div>
+          </a>
+        ))}
       </div>
     </section>
 

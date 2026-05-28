@@ -82,3 +82,12 @@
   font-weight: 300;
   font-style: italic;
 }
+
+.book-cover {
+  width: 32px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 2px;
+  opacity: 0.85;
+  flex-shrink: 0;
+}

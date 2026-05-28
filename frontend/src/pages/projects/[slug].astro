@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Nav from '../../components/Nav'
+import Footer from '../../components/Footer'
+import { getCollection, render } from 'astro:content'
+import '../../styles/project.css'
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects')
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }))
+}
+
+const { project } = Astro.props
+const { Content } = await render(project)
+---
+
+<Layout title={project.data.title} description={project.data.description}>
+  <main class="container">
+    <Nav client:load />
+
+    <article class="project">
+      <header class="project-header">
+        <div class="project-meta">
+          <p class="project-date">
+            {project.data.date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
+          </p>
+          <div class="project-links">
+            <a href={project.data.github} target="_blank" rel="noopener noreferrer" class="project-link">
+              github →
+            </a>
+            {project.data.demo && (
+              <a href={project.data.demo} target="_blank" rel="noopener noreferrer" class="project-link">
+                live demo →
+              </a>
+            )}
+          </div>
+        </div>
+        <h1 class="project-title">{project.data.title}</h1>
+        <p class="project-description">{project.data.description}</p>
+        <div class="project-tags">
+          {project.data.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      </header>
+
+      <div class="project-content">
+        <Content />
+      </div>
+    </article>
+
+    <Footer client:load />
+  </main>
+</Layout>

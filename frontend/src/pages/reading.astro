@@ -5,23 +5,21 @@ import Footer from '../components/Footer'
 import '../styles/reading.css'
 
 const completed = [
-  { title: 'Meditations', author: 'Marcus Aurelius' },
+  { title: 'Meditations', author: 'Marcus Aurelius', isbn: '9780140449334' },
 ]
 
 const reading = [
-  { title: 'The Pragmatic Programmer', author: 'Andy Hunt & Dave Thomas' },
-  { title: 'Meditations', author: 'Marcus Aurelius' },
-  { title: 'Flowers for Algernon', author: 'Daniel Keyes' },
+  { title: 'The Pragmatic Programmer', author: 'Andy Hunt & Dave Thomas', isbn: '9780135957059' },
+  { title: 'Flowers for Algernon', author: 'Daniel Keyes', isbn: '9780156030304' },
 ]
 
 const upNext = [
-  { title: 'A Philosophy of Software Design', author: 'John Ousterhout' },
-  { title: "Computer Systems: A Programmer's Perspective", author: "Bryant & O'Hallaron" },
-  { title: 'Zen and the Art of Motorcycle Maintenance', author: 'Robert M. Pirsig' },
-  { title: 'The Master and Margarita', author: 'Mikhail Bulgakov' },
-  { title: 'The Myth of Sisyphus', author: 'Albert Camus' },
-  { title: "Surely You're Joking, Mr. Feynman!", author: 'Richard Feynman' },
-  { title: 'Blood Meridian', author: 'Cormac McCarthy' },
+  { title: 'A Philosophy of Software Design', author: 'John Ousterhout', isbn: '9781732102200' },
+  { title: "Computer Systems: A Programmer's Perspective", author: "Bryant & O'Hallaron", isbn: '9780134092669' },
+  { title: 'Zen and the Art of Motorcycle Maintenance', author: 'Robert M. Pirsig', isbn: '9780060839871' },
+  { title: 'The Myth of Sisyphus', author: 'Albert Camus', isbn: '9780679733966' },
+  { title: "Surely You're Joking, Mr. Feynman!", author: 'Richard Feynman', isbn: '9780393316049' },
+  { title: 'Blood Meridian', author: 'Cormac McCarthy', isbn: '9780679728757' },
 ]
 ---
 
@@ -34,6 +32,12 @@ const upNext = [
       <div class="rows">
         {completed.map((book) => (
           <div class="row">
+            <img
+              src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`}
+              alt={book.title}
+              class="book-cover"
+              loading="lazy"
+            />
             <span class="dot dot-completed"></span>
             <div>
               <span class="book-title">{book.title}</span>
@@ -51,6 +55,12 @@ const upNext = [
       <div class="rows">
         {reading.map((book) => (
           <div class="row">
+            <img
+              src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`}
+              alt={book.title}
+              class="book-cover"
+              loading="lazy"
+            />
             <span class="dot dot-reading"></span>
             <div>
               <span class="book-title">{book.title}</span>
@@ -68,6 +78,12 @@ const upNext = [
       <div class="rows">
         {upNext.map((book) => (
           <div class="row">
+            <img
+              src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`}
+              alt={book.title}
+              class="book-cover"
+              loading="lazy"
+            />
             <span class="dot dot-upnext"></span>
             <div>
               <span class="book-title">{book.title}</span>
@@ -76,8 +92,7 @@ const upNext = [
           </div>
         ))}
       </div>
-    </section>
-
+    </section>    
     <Footer client:load />
   </main>
 </Layout>

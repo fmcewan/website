@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Nav from '../../components/Nav'
+import Footer from '../../components/Footer'
+import '../../styles/projects.css'
+
+const projects = [
+  {
+    slug: 'qcp',
+    name: 'Quantum Conformal Prediction',
+    description: 'Undergraduate dissertation — a framework for training parameterised quantum circuits and evaluated using conformal prediction.',
+    tags: ['Python', 'Quantum ML'],
+    icon: 'devicon-python-plain colored',
+    github: 'https://github.com/fmcewan/qcp',
+  },
+  {
+    slug: 'chess-engine',
+    name: 'Chess Engine',
+    description: 'A fully functional chess engine and GUI written in C++, featuring minimax search with alpha-beta pruning and piece-square table evaluation.',
+    tags: ['C++', 'SDL2'],
+    icon: 'devicon-cplusplus-plain colored',
+    github: 'https://github.com/fmcewan/chess-engine',
+  },
+  {
+    slug: 'rgbd-object-classification',
+    name: 'RGB-D Object Classification',
+    description: 'An early fusion CNN for RGB-D object classification using TensorFlow and Keras Tuner with Bayesian hyperparameter optimisation.',
+    tags: ['Python', 'TensorFlow', 'Computer Vision'],
+    icon: 'devicon-tensorflow-original colored',
+    github: 'https://github.com/fmcewan/rgbd-object-classification',
+  },
+]
+---
+
+<Layout title="Projects">
+  <main class="container">
+    <Nav client:load />
+
+    <p class="section-label">projects</p>
+    <div class="projects">
+      {projects.map((project) => (
+        <a href={`/projects/${project.slug}`} class="project">
+          <div class="project-top">
+            <div class="project-left">
+              <i class={project.icon} style="font-size: 18px;"></i>
+              <span class="project-name">{project.name}</span>
+            </div>
+            <div class="project-right">
+              {project.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+              <span class="arrow">→</span>
+            </div>
+          </div>
+          <p class="project-desc">{project.description}</p>
+        </a>
+      ))}
+    </div>
+
+    <Footer client:load />
+  </main>
+</Layout>
+
