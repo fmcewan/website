@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Nav from '../components/Nav'
+import Nav from '../components/Nav.astro'
 import Footer from '../components/Footer'
 import '../styles/reading.css'
 
@@ -25,7 +25,7 @@ const upNext = [
 
 <Layout title="Reads">
   <main class="container">
-    <Nav client:load />
+    <Nav/>
 
     <section class="section">
       <p class="section-label">completed</p>

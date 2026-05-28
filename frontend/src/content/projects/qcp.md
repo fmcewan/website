@@ -1,5 +1,5 @@
 ---
-title: qcp
+title: Quantum Conformal Prediction 
 description: A framework for training parameterised quantum circuits and evaluating them using conformal prediction.
 tags: ['Python', 'Quantum ML']
 github: https://github.com/fmcewan/qcp

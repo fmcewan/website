@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Nav from '../components/Nav'
+import Nav from '../components/Nav.astro'
 import Footer from '../components/Footer'
+import HeroGraph from '../components/HeroGraph'
+
 import { getCollection } from 'astro:content'
 
 const posts = await getCollection('blog', ({ data }) => !data.draft)
@@ -14,19 +16,24 @@ projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 
 <Layout title="Home">
   <main class="container">
-    <Nav client:load />
+    <Nav/>
 
     <section class="hero">
-      <p class="hero-label">Fraser McEwan</p>
-      <h1 class="hero-name">I'm a<br /><span> software engineer.</span></h1>
-      <p class="hero-bio">
-        I write software that's clean, considered, and built to last.
-        I'm drawn to hard problems, sharp tools, and the craft of engineering done well.
-      </p>
-      <span class="available">
-        <span class="available-dot"></span>
-        available for work
-      </span>
+      <div class="hero-content">
+        <p class="hero-label">FRASER MCEWAN</p>
+        <h1 class="hero-name">I'm a<br /><span>software engineer.</span></h1>
+        <p class="hero-bio">
+          I write software that's clean, considered, and built to last.
+          Drawn to hard problems, sharp tools, and the craft of engineering done well.
+        </p>
+        <span class="available">
+          <span class="available-dot"></span>
+          available for work
+        </span>
+      </div>
+      <div class="hero-graph">
+        <HeroGraph client:load />
+      </div>
     </section>
 
     <div class="divider"></div>

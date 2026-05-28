@@ -6,7 +6,31 @@
 }
 
 .hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
   margin-bottom: 5rem;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-graph {
+  flex: 1;
+  min-width: 0;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-graph {
+    display: none;
+  }
 }
 
 .hero-label {
@@ -196,4 +220,10 @@
   color: #8b9ab0;
   letter-spacing: 0.04em;
   font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .project-desc {
+    display: none;
+  }
 }

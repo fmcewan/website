@@ -1,5 +1,5 @@
 ---
-title: chess-engine
+title: Chess Engine 
 description: A fully functional chess engine and GUI written in C++, featuring minimax search with alpha-beta pruning.
 tags: ['C++', 'SDL2']
 github: https://github.com/fmcewan/chess-engine

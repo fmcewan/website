@@ -1,5 +1,5 @@
 ---
-title: rgbd-object-classification
+title: RGB-D Object Classification 
 description: An early fusion CNN for RGB-D object classification using TensorFlow and Bayesian hyperparameter optimisation.
 tags: ['Python', 'TensorFlow', 'Computer Vision']
 github: https://github.com/fmcewan/rgbd-object-classification
