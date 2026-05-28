@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav'
+import Footer from '../components/Footer'
+import '../styles/reading.css'
+
+const completed = [
+  { title: 'Meditations', author: 'Marcus Aurelius' },
+]
+
+const reading = [
+  { title: 'The Pragmatic Programmer', author: 'Andy Hunt & Dave Thomas' },
+  { title: 'Meditations', author: 'Marcus Aurelius' },
+  { title: 'Flowers for Algernon', author: 'Daniel Keyes' },
+]
+
+const upNext = [
+  { title: 'A Philosophy of Software Design', author: 'John Ousterhout' },
+  { title: "Computer Systems: A Programmer's Perspective", author: "Bryant & O'Hallaron" },
+  { title: 'Zen and the Art of Motorcycle Maintenance', author: 'Robert M. Pirsig' },
+  { title: 'The Master and Margarita', author: 'Mikhail Bulgakov' },
+  { title: 'The Myth of Sisyphus', author: 'Albert Camus' },
+  { title: "Surely You're Joking, Mr. Feynman!", author: 'Richard Feynman' },
+  { title: 'Blood Meridian', author: 'Cormac McCarthy' },
+]
+---
+
+<Layout title="Reads">
+  <main class="container">
+    <Nav client:load />
+
+    <section class="section">
+      <p class="section-label">completed</p>
+      <div class="rows">
+        {completed.map((book) => (
+          <div class="row">
+            <span class="dot dot-completed"></span>
+            <div>
+              <span class="book-title">{book.title}</span>
+              <span class="book-author">{book.author}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <p class="section-label">reading</p>
+      <div class="rows">
+        {reading.map((book) => (
+          <div class="row">
+            <span class="dot dot-reading"></span>
+            <div>
+              <span class="book-title">{book.title}</span>
+              <span class="book-author">{book.author}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <p class="section-label">up next</p>
+      <div class="rows">
+        {upNext.map((book) => (
+          <div class="row">
+            <span class="dot dot-upnext"></span>
+            <div>
+              <span class="book-title">{book.title}</span>
+              <span class="book-author">{book.author}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <Footer client:load />
+  </main>
+</Layout>

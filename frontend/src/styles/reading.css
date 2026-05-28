@@ -1,0 +1,84 @@
+.container {
+  font-family: var(--font-mono);
+  width: 95%;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.section {
+  margin-bottom: 3.5rem;
+}
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b9ab0;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.divider {
+  height: 0.5px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 3rem 0;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0.85rem 0;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.row:first-child {
+  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-completed {
+  background: #4caf82;
+}
+
+.dot-reading {
+  background: #78a9ff;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.dot-upnext {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.book-title {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #f2f4f8;
+  letter-spacing: 0.01em;
+  margin-bottom: 2px;
+}
+
+.book-author {
+  display: block;
+  font-size: 11px;
+  color: #8b9ab0;
+  font-weight: 300;
+  font-style: italic;
+}

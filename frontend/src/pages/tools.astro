@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav'
+import Footer from '../components/Footer'
+import '../styles/tools.css'
+---
+
+<Layout title="Tools">
+  <main class="container">
+    <Nav client:load />
+
+    <section class="section">
+      <p class="section-label">stack</p>
+      <div class="rows">
+        <div class="row">
+          <div class="row-left">
+            <i class="devicon-typescript-plain colored"></i>
+            <span class="row-name">TypeScript</span>
+          </div>
+          <span class="tag">language</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="devicon-python-plain colored"></i>
+            <span class="row-name">Python</span>
+          </div>
+          <span class="tag">language</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="devicon-c-plain colored"></i>
+            <span class="row-name">C</span>
+          </div>
+          <span class="tag">language</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="devicon-cplusplus-plain colored"></i>
+            <span class="row-name">C++</span>
+          </div>
+          <span class="tag">language</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="devicon-react-original colored"></i>
+            <span class="row-name">React</span>
+          </div>
+          <span class="tag">frontend</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="devicon-astro-plain colored"></i>
+            <span class="row-name">Astro</span>
+          </div>
+          <span class="tag">framework</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="devicon-nodejs-plain colored"></i>
+            <span class="row-name">Node.js</span>
+          </div>
+          <span class="tag">runtime</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="devicon-postgresql-plain colored"></i>
+            <span class="row-name">PostgreSQL</span>
+          </div>
+          <span class="tag">database</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <p class="section-label">gear</p>
+      <div class="rows">
+        <div class="row">
+          <div class="row-left">
+            <i class="ti ti-device-laptop"></i>
+            <span class="row-name">Lenovo ThinkPad P1 Gen 4</span>
+          </div>
+          <span class="detail">primary machine</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="ti ti-keyboard"></i>
+            <span class="row-name">Keychron K2 HE</span>
+          </div>
+          <span class="detail">keyboard</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="ti ti-mouse"></i>
+            <span class="row-name">Logitech MX Master 3S</span>
+          </div>
+          <span class="detail">mouse</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <p class="section-label">software</p>
+      <div class="rows">
+        <div class="row">
+          <div class="row-left">
+            <i class="devicon-neovim-plain colored"></i>
+            <span class="row-name">Neovim</span>
+          </div>
+          <span class="detail">editor</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="ti ti-terminal"></i>
+            <span class="row-name">Ghostty</span>
+          </div>
+          <span class="detail">terminal</span>
+        </div>
+        <div class="row">
+          <div class="row-left">
+            <i class="ti ti-palette" style="color: #78a9ff;"></i>
+            <span class="row-name">Carbonfox</span>
+          </div>
+          <span class="detail">theme</span>
+        </div>
+      </div>
+    </section>
+
+    <Footer client:load />
+  </main>
+</Layout>

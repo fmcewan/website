@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Nav from '../../components/Nav'
+import Footer from '../../components/Footer'
+import { getCollection } from 'astro:content'
+import '../../styles/notes.css'
+
+const posts = await getCollection('blog', ({ data }) => !data.draft)
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+---
+
+<Layout title="Notes">
+  <main class="container">
+    <Nav client:load />
+
+    <section class="section">
+      <p class="section-label">notes</p>
+      <div class="posts">
+        {posts.map((post) => (
+          <a href={`/notes/${post.id}`} class="post">
+            <span class="post-title">{post.data.title}</span>
+            <span class="post-date">
+              {post.data.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <Footer client:load />
+  </main>
+</Layout>

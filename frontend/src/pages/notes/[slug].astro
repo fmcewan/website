@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Nav from '../../components/Nav'
+import Footer from '../../components/Footer'
+
+import { getCollection } from 'astro:content'
+import { render } from 'astro:content'
+
+import '../../styles/post.css'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft)
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }))
+}
+
+const { post } = Astro.props 
+const { Content } = await render(post)
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <main class="container">
+    <Nav client:load />
+
+    <article class="post">
+      <header class="post-header">
+        <p class="post-date">
+          {post.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+        </p>
+        <h1 class="post-title">{post.data.title}</h1>
+        {post.data.description && (
+          <p class="post-description">{post.data.description}</p>
+        )}
+      </header>
+
+      <div class="post-content">
+        <Content />
+      </div>
+    </article>
+
+    <Footer client:load />
+  </main>
+</Layout>

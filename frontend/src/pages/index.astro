@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav'
+import Footer from '../components/Footer'
+import { getCollection } from 'astro:content'
+
+const posts = await getCollection('blog', ({ data }) => !data.draft)
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+const recentPosts = posts.slice(0, 3)
+---
+
+<Layout title="Home">
+  <main class="container">
+    <Nav client:load />
+
+    <section class="hero">
+      <p class="hero-label">software engineer</p>
+      <h1 class="hero-name">Fraser<br /><span>builds things.</span></h1>
+      <p class="hero-bio">
+        I write software that's clean, considered, and built to last.
+        Drawn to hard problems, sharp tools, and the craft of engineering done well.
+      </p>
+      <span class="available">
+        <span class="available-dot"></span>
+        available for work
+      </span>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <p class="section-label">selected projects</p>
+      <div class="projects">
+        <a href="#" class="project">
+          <div class="project-left">
+            <span class="project-name">project-alpha</span>
+            <span class="project-desc">short description of what it does</span>
+          </div>
+          <div class="project-right">
+            <span class="project-tag">Go</span>
+            <span class="project-arrow">→</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="section-label">recent notes</p>
+      <div class="posts">
+        {recentPosts.map((post) => (
+          <a href={`/notes/${post.id}`} class="post">
+            <span class="post-title">{post.data.title}</span>
+            <span class="post-date">
+              {post.data.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <Footer client:load />
+  </main>
+</Layout>
+
+<style>
+    @import '../styles/index.css';
+</style>
