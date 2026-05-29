@@ -27,6 +27,7 @@ const path = Astro.url.pathname
 </nav>
 
 <style>
+
   /* ── Layout ── */
   .nav {
     position: sticky;
@@ -71,6 +72,8 @@ const path = Astro.url.pathname
     text-decoration: none;
   }
 
+  .logo { color: #f2f4f8; }
+  .logo:hover { color: #78a9ff; }
   .logo.active { color: #78a9ff; }
 
   /* ── Desktop links ── */
@@ -90,20 +93,20 @@ const path = Astro.url.pathname
     transition: color 0.15s;
   }
 
-  .link:hover,
-  .link.active { color: #f2f4f8; }
-
   .link-accent {
     font-size: 13px;
     font-weight: 500;
-    color: #f2f4f8;
+    color: #8b9ab0;
     letter-spacing: 0.04em;
     text-decoration: none;
     transition: color 0.15s;
   }
 
-  .link-accent:hover,
+  .link-accent:hover { color: #78a9ff; }
   .link-accent.active { color: #78a9ff; }
+
+  .link:hover { color: #78a9ff; }
+  .link.active { color: #78a9ff; }
 
   /* ── Hamburger ── */
   .hamburger {
@@ -158,6 +161,7 @@ const path = Astro.url.pathname
     .links { display: none; }
     .hamburger { display: flex; }
   }
+
 </style>
 
 <script>
