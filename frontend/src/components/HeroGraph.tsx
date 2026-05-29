@@ -65,7 +65,7 @@ const HeroGraph = () => {
     function draw(ts: number) {
       rafId = requestAnimationFrame(draw)
 
-      if (ts - lastMorph > 5000 && morphT >= 1) {
+      if (ts - lastMorph > 2500 && morphT >= 1) {
         startMorph()
         lastMorph = ts
       }

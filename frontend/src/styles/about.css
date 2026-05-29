@@ -175,4 +175,33 @@
   max-width: 700px;
 }
 
+@media (max-width: 768px) {
+   
+  .profile-left {
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+  }
 
+  .profile-row {
+    flex-direction: column-reverse !important;
+    align-items: center !important;
+    width: 100%;
+    gap: 3rem;
+  }
+
+ .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .profile-middle {
+    width: 100%;
+    text-align: left;
+  }
+
+  .terminal {
+    width: 100%;
+  }
+}

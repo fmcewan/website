@@ -8,10 +8,6 @@ import '../../styles/log.css'
 const posts = await getCollection('blog', ({ data }) => !data.draft)
 posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 
-const completed = [
-  { title: 'Meditations', author: 'Marcus Aurelius', isbn: '9780140449334' },
-]
-
 const reading = [
   { title: 'The Pragmatic Programmer', author: 'Andy Hunt & Dave Thomas', isbn: '9780135957059' },
   { title: 'Flowers for Algernon', author: 'Daniel Keyes', isbn: '9780156030304' },
@@ -49,20 +45,6 @@ const upNext = [
 
     <section class="section">
       <p class="section-label">reading</p>
-
-      <p class="reading-sub">completed</p>
-      <div class="rows" style="margin-bottom: 2rem;">
-        {completed.map((book) => (
-          <div class="row">
-            <img src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`} alt={book.title} class="book-cover" loading="lazy" />
-            <span class="dot dot-completed"></span>
-            <div>
-              <span class="book-title">{book.title}</span>
-              <span class="book-author">{book.author}</span>
-            </div>
-          </div>
-        ))}
-      </div>
 
       <p class="reading-sub">currently reading</p>
       <div class="rows" style="margin-bottom: 2rem;">

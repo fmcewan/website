@@ -3,14 +3,14 @@ const path = Astro.url.pathname
 ---
 
 <nav class="nav" id="site-nav">
-    <a href="/" class={path === '/' ? 'logo active' : 'logo'}>fmcewan.dev</a>
+  <a href="/" class={path === '/' ? 'logo active' : 'logo'}>fmcewan.dev</a>
 
-    <ul class="links">
-      <li><a href="/projects" class={path.startsWith('/projects') ? 'link-accent active' : 'link-accent'}>projects</a></li>
-      <li><a href="/about" class={path === '/about' ? 'link active' : 'link'}>about</a></li>
-      <li><a href="/now" class={path === '/now' ? 'link active' : 'link'}>now</a></li>
-      <li><a href="/log" class={path.startsWith('/log') ? 'link active' : 'link'}>log</a></li>
-    </ul>
+  <ul class="links">
+    <li><a href="/projects" class={path.startsWith('/projects') ? 'link-accent active' : 'link-accent'}>projects</a></li>
+    <li><a href="/about" class={path === '/about' ? 'link active' : 'link'}>about</a></li>
+    <li><a href="/now" class={path === '/now' ? 'link active' : 'link'}>now</a></li>
+    <li><a href="/log" class={path.startsWith('/log') ? 'link active' : 'link'}>log</a></li>
+  </ul>
 
   <button class="hamburger" id="hamburger" aria-label="Toggle menu">
     <span class="bar"></span>
@@ -18,47 +18,51 @@ const path = Astro.url.pathname
     <span class="bar"></span>
   </button>
 
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="/projects" class={path.startsWith('/projects') ? 'mobile-link active' : 'mobile-link'}>projects</a>
-      <a href="/about" class={path === '/about' ? 'mobile-link active' : 'mobile-link'}>about</a>
-      <a href="/now" class={path === '/now' ? 'mobile-link active' : 'mobile-link'}>now</a>
-      <a href="/log" class={path.startsWith('/log') ? 'mobile-link active' : 'mobile-link'}>log</a>
-    </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/projects" class={path.startsWith('/projects') ? 'mobile-link active' : 'mobile-link'}>projects</a>
+    <a href="/about" class={path === '/about' ? 'mobile-link active' : 'mobile-link'}>about</a>
+    <a href="/now" class={path === '/now' ? 'mobile-link active' : 'mobile-link'}>now</a>
+    <a href="/log" class={path.startsWith('/log') ? 'mobile-link active' : 'mobile-link'}>log</a>
+  </div>
+</nav>
 
 <style>
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 0;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-  transition: all 0.2s ease;
-}
+  /* ── Layout ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    transition: all 0.2s ease;
+  }
 
-.nav::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -2.5rem;
-  right: -2.5rem;
-  bottom: 0;
-  background: rgba(10, 15, 20, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  z-index: -1;
-}
+  /* Frosted glass background on scroll */
+  .nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -2.5rem;
+    right: -2.5rem;
+    bottom: 0;
+    background: rgba(10, 15, 20, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: -1;
+  }
 
-.nav.scrolled::before {
-  opacity: 1;
-}
+  .nav.scrolled::before {
+    opacity: 1;
+  }
 
+  /* ── Logo ── */
   .logo {
     font-size: 13px;
     font-weight: 500;
@@ -67,6 +71,9 @@ const path = Astro.url.pathname
     text-decoration: none;
   }
 
+  .logo.active { color: #78a9ff; }
+
+  /* ── Desktop links ── */
   .links {
     display: flex;
     gap: 2rem;
@@ -83,7 +90,8 @@ const path = Astro.url.pathname
     transition: color 0.15s;
   }
 
-  .link:hover { color: #78a9ff; }
+  .link:hover,
+  .link.active { color: #f2f4f8; }
 
   .link-accent {
     font-size: 13px;
@@ -94,8 +102,10 @@ const path = Astro.url.pathname
     transition: color 0.15s;
   }
 
-  .link-accent:hover { color: #78a9ff; }
+  .link-accent:hover,
+  .link-accent.active { color: #78a9ff; }
 
+  /* ── Hamburger ── */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -118,6 +128,7 @@ const path = Astro.url.pathname
   .hamburger.open .bar:nth-child(2) { opacity: 0; }
   .hamburger.open .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
+  /* ── Mobile menu ── */
   .mobile-menu {
     display: none;
     flex-direction: column;
@@ -139,29 +150,14 @@ const path = Astro.url.pathname
     transition: color 0.15s;
   }
 
-  .mobile-link:hover { color: #78a9ff; }
+  .mobile-link:hover,
+  .mobile-link.active { color: #78a9ff; }
 
-    .link.active {
-      color: #f2f4f8;
-    }
-
-    .link-accent.active {
-      color: #78a9ff;
-    }
-
-    .mobile-link.active {
-      color: #f2f4f8;
-    }
-
+  /* ── Responsive ── */
   @media (max-width: 768px) {
     .links { display: none; }
     .hamburger { display: flex; }
   }
-
-.logo.active {
-  color: #78a9ff;
-}
-
 </style>
 
 <script>
@@ -170,11 +166,7 @@ const path = Astro.url.pathname
   const menu = document.getElementById('mobile-menu')
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      nav?.classList.add('scrolled')
-    } else {
-      nav?.classList.remove('scrolled')
-    }
+    nav?.classList.toggle('scrolled', window.scrollY > 10)
   })
 
   hamburger?.addEventListener('click', () => {
