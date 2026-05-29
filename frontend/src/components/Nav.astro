@@ -1,5 +1,5 @@
 ---
-const path = Astro.url.pathname
+const path = Astro.url.pathname.replace(/\/$/, '') || '/'
 ---
 
 <nav class="nav" id="site-nav">
