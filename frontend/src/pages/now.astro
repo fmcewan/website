@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer'
+import '../styles/now.css'
+---
+
+<Layout title="Now" description="What Fraser McEwan is up to right now.">
+  <main class="container">
+    <Nav />
+
+    <div class="now-header">
+      <h1 class="now-title">now<span>.</span></h1>
+      <p class="now-updated">last updated — May 2026</p>
+    </div>
+
+    <p class="now-text">
+        I'm currently in Edinburgh, Scotland. I found that University taught me how to think,  
+        now I'm learning how to build real software through personal projects and courses such as Boot.dev while I hunt for a graduate role.    </p>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <p class="section-label">building</p>
+      <div class="now-list">
+        <div class="now-row">
+          <span class="now-name"><span class="now-dot"></span>chess-engine — browser port</span>
+          <span class="now-detail">Emscripten → WebAssembly</span>
+        </div>
+        <div class="now-row">
+          <span class="now-name"><span class="now-dot"></span>jot</span>
+          <span class="now-detail">terminal-first markdown notes</span>
+        </div>
+        <div class="now-row">
+          <span class="now-name"><span class="now-dot"></span>flux</span>
+          <span class="now-detail">statically typed compiled language</span>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <p class="section-label">learning</p>
+      <div class="now-list">
+        <div class="now-row">
+          <span class="now-name">TypeScript path</span>
+          <span class="now-detail">Boot.dev</span>
+        </div>
+        <div class="now-row">
+          <span class="now-name">Emscripten / WebAssembly</span>
+          <span class="now-detail">for chess engine port</span>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <p class="section-label">reading</p>
+      <div class="now-list">
+        <div class="now-row">
+          <span class="now-name">The Pragmatic Programmer</span>
+          <span class="now-detail">Hunt & Thomas</span>
+        </div>
+        <div class="now-row">
+          <span class="now-name">Flowers for Algernon</span>
+          <span class="now-detail">Daniel Keyes</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="section-label">status</p>
+      <div class="now-list">
+        <div class="now-row">
+          <span class="now-name">
+            <span class="now-dot now-dot-green"></span>
+            open to work
+          </span>
+          <span class="now-detail">Graduate roles in software engineering</span>
+        </div>
+      </div>
+    </section>
+
+    <Footer client:load />
+  </main>
+</Layout>

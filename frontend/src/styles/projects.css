@@ -1,22 +1,9 @@
-.section-label {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #8b9ab0;
-  margin-bottom: 1.5rem;
-  font-weight: 400;
-}
-
 .section-intro {
   font-size: 13px;
   line-height: 1.85;
   color: #8b9ab0;
   font-weight: 300;
   margin-bottom: 1.5rem;
-}
-
-.section {
-  margin-bottom: 3rem;
 }
 
 .projects {
@@ -71,16 +58,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.tag {
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #8b9ab0;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 3px 8px;
-  border-radius: 3px;
 }
 
 .project-desc {

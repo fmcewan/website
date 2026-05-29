@@ -6,22 +6,41 @@ interface Props {
   description?: string
 }
 
-const { title, description = 'Software engineer' } = Astro.props
+const { title, description = 'Software engineer. CS & Maths graduate. Building things in C++, Python, and TypeScript.' } = Astro.props
+const canonicalURL = new URL(Astro.url.pathname, 'https://fmcewan.dev')
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-        
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content={description} />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <title>{title} | fmcewan.dev</title>
-    </head>
-  <body>
-    <slot />
-  </body>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | fmcewan.dev</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | fmcewan.dev`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://fmcewan.dev/avatar.jpg" />
+
+    <!-- Twitter/X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={`${title} | fmcewan.dev`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://fmcewan.dev/avatar.jpg" />
+  </head>
+  
+    <body>
+        <slot />
+    </body>
+
 </html>

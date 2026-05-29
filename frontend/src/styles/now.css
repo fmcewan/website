@@ -1,0 +1,85 @@
+.now-header {
+  margin-bottom: 3rem;
+}
+
+.now-title {
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #f2f4f8;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.now-title span {
+  color: var(--accent);
+}
+
+.now-updated {
+  font-size: 11px;
+  color: #8b9ab0;
+  letter-spacing: 0.06em;
+  font-weight: 300;
+}
+
+.now-text {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #8b9ab0;
+  font-weight: 300;
+}
+
+.now-text span {
+  color: var(--accent);
+}
+
+.now-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.now-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 0;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.now-row:first-child {
+  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.now-name {
+  font-size: 13px;
+  color: #f2f4f8;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.now-detail {
+  font-size: 11px;
+  color: #8b9ab0;
+  font-weight: 300;
+}
+
+.now-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #78a9ff;
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.now-dot-green {
+  background: #4caf82;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}

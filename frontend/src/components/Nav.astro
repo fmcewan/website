@@ -1,15 +1,16 @@
 ---
+const path = Astro.url.pathname
 ---
 
-<nav class="nav">
-  <a href="/" class="logo">fmcewan.dev</a>
+<nav class="nav" id="site-nav">
+    <a href="/" class={path === '/' ? 'logo active' : 'logo'}>fmcewan.dev</a>
 
-  <ul class="links">
-    <li><a href="/projects" class="link-accent">projects</a></li>
-    <li><a href="/about" class="link">about</a></li>
-    <li><a href="/notes" class="link">notes</a></li>
-    <li><a href="/reading" class="link">reading</a></li>
-  </ul>
+    <ul class="links">
+      <li><a href="/projects" class={path.startsWith('/projects') ? 'link-accent active' : 'link-accent'}>projects</a></li>
+      <li><a href="/about" class={path === '/about' ? 'link active' : 'link'}>about</a></li>
+      <li><a href="/now" class={path === '/now' ? 'link active' : 'link'}>now</a></li>
+      <li><a href="/log" class={path.startsWith('/log') ? 'link active' : 'link'}>log</a></li>
+    </ul>
 
   <button class="hamburger" id="hamburger" aria-label="Toggle menu">
     <span class="bar"></span>
@@ -17,23 +18,46 @@
     <span class="bar"></span>
   </button>
 
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="/projects" class="mobile-link">projects</a>
-    <a href="/about" class="mobile-link">about</a>
-    <a href="/notes" class="mobile-link">notes</a>
-    <a href="/reading" class="mobile-link">reading</a>
-  </div>
-</nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/projects" class={path.startsWith('/projects') ? 'mobile-link active' : 'mobile-link'}>projects</a>
+      <a href="/about" class={path === '/about' ? 'mobile-link active' : 'mobile-link'}>about</a>
+      <a href="/now" class={path === '/now' ? 'mobile-link active' : 'mobile-link'}>now</a>
+      <a href="/log" class={path.startsWith('/log') ? 'mobile-link active' : 'mobile-link'}>log</a>
+    </div>
 
 <style>
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5rem;
-    position: relative;
-    flex-wrap: wrap;
-  }
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  transition: all 0.2s ease;
+}
+
+.nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2.5rem;
+  right: -2.5rem;
+  bottom: 0;
+  background: rgba(10, 15, 20, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: -1;
+}
+
+.nav.scrolled::before {
+  opacity: 1;
+}
 
   .logo {
     font-size: 13px;
@@ -117,15 +141,41 @@
 
   .mobile-link:hover { color: #78a9ff; }
 
+    .link.active {
+      color: #f2f4f8;
+    }
+
+    .link-accent.active {
+      color: #78a9ff;
+    }
+
+    .mobile-link.active {
+      color: #f2f4f8;
+    }
+
   @media (max-width: 768px) {
     .links { display: none; }
     .hamburger { display: flex; }
   }
+
+.logo.active {
+  color: #78a9ff;
+}
+
 </style>
 
 <script>
+  const nav = document.querySelector('nav')
   const hamburger = document.getElementById('hamburger')
   const menu = document.getElementById('mobile-menu')
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      nav?.classList.add('scrolled')
+    } else {
+      nav?.classList.remove('scrolled')
+    }
+  })
 
   hamburger?.addEventListener('click', () => {
     hamburger.classList.toggle('open')

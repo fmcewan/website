@@ -40,11 +40,41 @@ nav > div {
 }
 
 .container {
-  font-family: var(--font-mono);
   width: 95%;
   margin: 0 auto;
   max-width: 1400px;
   padding: 3rem 2.5rem 4rem;
 }
 
+.section {
+  margin-bottom: 3rem;
+}
 
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b9ab0;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.divider {
+  height: 0.5px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 3rem 0;
+}
+
+.tag {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8b9ab0;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.scroll-behavior {
+  scroll-behavior: smooth;
+}

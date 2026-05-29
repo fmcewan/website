@@ -1,8 +1,12 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Nav from '../components/Nav.astro'
-import Footer from '../components/Footer'
-import '../styles/reading.css'
+import Layout from '../../layouts/Layout.astro'
+import Nav from '../../components/Nav.astro'
+import Footer from '../../components/Footer'
+import { getCollection } from 'astro:content'
+import '../../styles/log.css'
+
+const posts = await getCollection('blog', ({ data }) => !data.draft)
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 
 const completed = [
   { title: 'Meditations', author: 'Marcus Aurelius', isbn: '9780140449334' },
@@ -23,21 +27,34 @@ const upNext = [
 ]
 ---
 
-<Layout title="Reads">
+<Layout title="Log">
   <main class="container">
-    <Nav/>
+    <Nav />
 
     <section class="section">
-      <p class="section-label">completed</p>
-      <div class="rows">
+      <p class="section-label">notes</p>
+      <p class="log-intro">Thoughts on software and whatever else is on my mind.</p>
+      <div class="posts">
+        {posts.map((post) => (
+          <a href={`/log/${post.id}`} class="post">
+            <span class="post-title">{post.data.title}</span>
+            <span class="post-date">
+              {post.data.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+
+    <section class="section">
+      <p class="section-label">reading</p>
+
+      <p class="reading-sub">completed</p>
+      <div class="rows" style="margin-bottom: 2rem;">
         {completed.map((book) => (
           <div class="row">
-            <img
-              src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`}
-              alt={book.title}
-              class="book-cover"
-              loading="lazy"
-            />
+            <img src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`} alt={book.title} class="book-cover" loading="lazy" />
             <span class="dot dot-completed"></span>
             <div>
               <span class="book-title">{book.title}</span>
@@ -46,21 +63,12 @@ const upNext = [
           </div>
         ))}
       </div>
-    </section>
 
-    <div class="divider"></div>
-
-    <section class="section">
-      <p class="section-label">reading</p>
-      <div class="rows">
+      <p class="reading-sub">currently reading</p>
+      <div class="rows" style="margin-bottom: 2rem;">
         {reading.map((book) => (
           <div class="row">
-            <img
-              src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`}
-              alt={book.title}
-              class="book-cover"
-              loading="lazy"
-            />
+            <img src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`} alt={book.title} class="book-cover" loading="lazy" />
             <span class="dot dot-reading"></span>
             <div>
               <span class="book-title">{book.title}</span>
@@ -69,21 +77,12 @@ const upNext = [
           </div>
         ))}
       </div>
-    </section>
 
-    <div class="divider"></div>
-
-    <section class="section">
-      <p class="section-label">up next</p>
+      <p class="reading-sub">up next</p>
       <div class="rows">
         {upNext.map((book) => (
           <div class="row">
-            <img
-              src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`}
-              alt={book.title}
-              class="book-cover"
-              loading="lazy"
-            />
+            <img src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`} alt={book.title} class="book-cover" loading="lazy" />
             <span class="dot dot-upnext"></span>
             <div>
               <span class="book-title">{book.title}</span>
@@ -92,7 +91,8 @@ const upNext = [
           </div>
         ))}
       </div>
-    </section>    
+    </section>
+
     <Footer client:load />
   </main>
 </Layout>

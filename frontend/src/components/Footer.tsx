@@ -12,13 +12,10 @@ const styles = {
     fontWeight: 300,
     letterSpacing: '0.02em',
   },
-  links: {
-    display: 'flex',
-    gap: '1.25rem',
-  },
-  link: {
+  copyright: {
     fontSize: '11px',
     color: '#8b9ab0',
+    fontWeight: 300,
     letterSpacing: '0.04em',
   },
 } satisfies Record<string, React.CSSProperties>
@@ -26,7 +23,8 @@ const styles = {
 const Footer = () => {
   return (
     <footer style={styles.footer}>
-      <span style={styles.motto}>compiling...</span>
+      <span style={styles.motto}>- proof by construction</span>
+      <span style={styles.copyright}>© 2025 Fraser McEwan</span>
     </footer>
   )
 }
