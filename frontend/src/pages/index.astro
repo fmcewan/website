@@ -26,7 +26,7 @@ projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
         <h1 class="hero-name">I'm a<br /><span>software engineer.</span></h1>
         <p class="hero-bio">
           I write software that's clean, considered, and built to last.
-          I'm drawn to difficult problems and the craft of engineering done well.
+          I'm drawn to difficult problems and the craft of software engineering done well.
           See my <a href="/projects" class="bio-link">projects</a> or read <a href="/about" class="bio-link">about me</a>.
         </p>
         <div class="hero-links">
@@ -83,7 +83,7 @@ projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
       <p class="section-label">recent notes</p>
       <div class="posts">
         {recentPosts.map((post) => (
-          <a href={`/notes/${post.id}`} class="post">
+          <a href={`/log/${post.id}`} class="post">
             <span class="post-title">{post.data.title}</span>
             <span class="post-date">
               {post.data.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
