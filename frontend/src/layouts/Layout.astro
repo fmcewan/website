@@ -6,7 +6,10 @@ interface Props {
   description?: string
 }
 
-const { title, description = 'Software engineer. CS & Maths graduate. Building things in C++, Python, and TypeScript.' } = Astro.props
+const {
+  title,
+  description = 'Computer Science and Mathematics graduate studying Data-Intensive Analysis at St Andrews, with interests in data, statistics and quantitative work.'
+} = Astro.props
 const canonicalURL = new URL(Astro.url.pathname, 'https://fmcewan.dev')
 ---
 
@@ -26,7 +29,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://fmcewan.dev')
     <link rel="apple-touch-icon" href="/favicon-180.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
-    <title>fmcewan.dev</title>
+    <title>{title === 'Fraser McEwan' ? title : `${title} | Fraser McEwan`}</title>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

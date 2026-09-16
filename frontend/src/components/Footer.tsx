@@ -24,7 +24,7 @@ const Footer = () => {
   return (
     <footer style={styles.footer}>
       <span style={styles.motto}>- proof by construction</span>
-      <span style={styles.copyright}>© 2025 Fraser McEwan</span>
+      <span style={styles.copyright}>© {new Date().getFullYear()} Fraser McEwan</span>
     </footer>
   )
 }

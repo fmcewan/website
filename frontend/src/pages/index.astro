@@ -3,100 +3,214 @@ import Layout from '../layouts/Layout.astro'
 import Nav from '../components/Nav.astro'
 import Footer from '../components/Footer'
 import HeroGraph from '../components/HeroGraph'
-
 import { getCollection } from 'astro:content'
 
 const posts = await getCollection('blog', ({ data }) => !data.draft)
 posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-const recentPosts = posts.slice(0, 3)
 
 const projects = await getCollection('projects')
 projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+
+const skills = [
+  'Python', 'R', 'SQL', 'C++', 'Java', 'pandas', 'NumPy',
+  'PyTorch', 'TensorFlow', 'Git', 'Linux',
+]
 ---
 
-<Layout title="Home">
-  <main class="container">
-    <Nav/>
+<Layout
+  title="Fraser McEwan"
+  description="Computer Science and Mathematics graduate studying Data-Intensive Analysis at St Andrews, with interests in data, statistics and quantitative work."
+>
+  <main class="container" id="top">
+    <Nav />
 
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="hero-content">
-
-        <p class="hero-label">FRASER MCEWAN</p>
-
-        <h1 class="hero-name">I'm a<br /><span>software engineer.</span></h1>
+        <p class="eyebrow"><span class="status-dot"></span>Open to graduate opportunities</p>
+        <h1 class="hero-name" id="hero-title">
+          Data, mathematics<br />
+          <span>&amp; thoughtful code.</span>
+        </h1>
         <p class="hero-bio">
-          I write software that's clean, considered, and built to last.
-          I'm drawn to difficult problems and the craft of engineering done well.
-          See my <a href="/projects" class="bio-link">projects</a> or read <a href="/about" class="bio-link">about me</a>.
+          I'm Fraser, a Computer Science and Mathematics graduate now studying
+          Data-Intensive Analysis at the University of St Andrews. I use statistics,
+          programming and mathematical reasoning to solve quantitative problems.
         </p>
-        <div class="hero-links">
-          <a href="https://github.com/fmcewan" target="_blank" class="hero-link">
-            <i class="ti ti-brand-github" aria-hidden="true"></i> GitHub 
+        <div class="hero-actions">
+          <a href="#projects" class="button button-primary">View my work <span aria-hidden="true">↓</span></a>
+          <a href="https://linkedin.com/in/fraser-mcewan-517186253/" target="_blank" rel="noreferrer" class="button button-secondary">View LinkedIn <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="social-links" aria-label="Social links">
+          <a href="https://github.com/fmcewan" target="_blank" rel="noreferrer">
+            <i class="ti ti-brand-github" aria-hidden="true"></i>GitHub
           </a>
-          <a href="https://linkedin.com/in/fraser-mcewan-517186253/" target="_blank" class="hero-link">
-            <i class="ti ti-brand-linkedin" aria-hidden="true"></i> LinkedIn 
+          <a href="https://linkedin.com/in/fraser-mcewan-517186253/" target="_blank" rel="noreferrer">
+            <i class="ti ti-brand-linkedin" aria-hidden="true"></i>LinkedIn
           </a>
         </div>
       </div>
-      <div class="hero-graph">
+
+      <div class="hero-graph" aria-hidden="true">
         <HeroGraph client:load />
       </div>
     </section>
-
-    <div class="cta-block">
-      <div class="cta-status">
-        <span class="cta-dot"></span>
-        open to work
-      </div>
-      <h2 class="cta-heading">I'm looking for a <span>graduate role</span><br/>in software engineering.</h2>
-      <p class="cta-sub">
-      </p>
-      <div class="cta-actions">
-        <a href="/cv.pdf" target="_blank" class="cta-primary">Download my CV →</a>
-        <a href="mailto:frasermcewan6@gmail.com" class="cta-secondary">Get in touch →</a>
-      </div>
-    </div>
-
-    <div class="divider"></div>
     
-    <section class="section">
-      <p class="section-label">selected projects</p>
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+        <p class="eyebrow"><span class="status-dot"></span>Open to work</p>
+        <h2 id="contact-title">Let's solve something<br /><span>interesting.</span></h2>
+        <p>
+          I'm looking for graduate opportunities across data, analytics and quantitative roles.
+        </p>
+          <div class="hero-actions">
+          <a
+            href="mailto:frasermcewan6@gmail.com"
+            class="button button-primary"
+          >
+            Get in touch <span aria-hidden="true">→</span>
+          </a>
+
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            class="button button-secondary"
+          >
+            View my CV <span aria-hidden="true">↗</span>
+          </a>
+        </div>    
+    </section>
+
+    <section class="page-section" id="about" aria-labelledby="about-title">
+      <div class="section-heading">
+        <p class="section-index">01</p>
+        <h2 id="about-title">About</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>
+            My interests sit at the intersection of statistics, data and computation.
+            I particularly enjoy problems where mathematical reasoning and programming
+            can be used together—from statistical modelling and machine learning to
+            computational methods.
+          </p>
+          <p>
+            My computer science background means I can do more than analyse a problem:
+            I can build the tools needed to explore it, test it and communicate the result.
+          </p>
+        </div>
+
+        <div class="profile-card">
+          <img src="/avatar.jpg" alt="Fraser McEwan" />
+          <div>
+            <span class="profile-name">Fraser McEwan</span>
+            <span class="profile-title">data · statistics · computing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-details">
+        <div>
+          <p class="detail-label">Education</p>
+          <div class="detail-list">
+            <div class="detail-row">
+              <div>
+                <span class="detail-title">MSc Data-Intensive Analysis</span>
+                <span class="detail-sub">University of St Andrews</span>
+              </div>
+              <span class="detail-meta">2026–27 · Current</span>
+            </div>
+            <div class="detail-row">
+              <div>
+                <span class="detail-title">BSc (Hons) Computer Science &amp; Mathematics</span>
+                <span class="detail-sub">University of Manchester</span>
+              </div>
+              <span class="detail-meta">2:1 · 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="detail-label">Technical toolkit</p>
+          <div class="skill-list">
+            {skills.map((skill) => <span>{skill}</span>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section" id="projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <p class="section-index">02</p>
+        <h2 id="projects-title">Selected projects</h2>
+        <p class="section-summary">A mix of statistical research, machine learning and systems work.</p>
+      </div>
+
       <div class="projects">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <a href={`/projects/${project.id}`} class="project">
-            <div class="project-left">
-              <span class="project-name">{project.data.title}</span>
-              <span class="project-desc">{project.data.description}</span>
+            <span class="project-number">0{index + 1}</span>
+            <div class="project-main">
+              <h3>{project.data.title}</h3>
+              <p>{project.data.description}</p>
+              <div class="project-tags">
+                {project.data.tags.map((tag) => <span>{tag}</span>)}
+              </div>
             </div>
-            <div class="project-right">
-              {project.data.tags.slice(0, 1).map((tag) => (
-                <span class="project-tag">{tag}</span>
-              ))}
-              <span class="project-arrow">→</span>
-            </div>
+            <span class="project-arrow" aria-hidden="true">↗</span>
           </a>
         ))}
       </div>
     </section>
 
-    <section class="section">
-      <p class="section-label">recent notes</p>
+    <section class="page-section" id="now" aria-labelledby="now-title">
+      <div class="section-heading">
+        <p class="section-index">03</p>
+        <h2 id="now-title">Now</h2>
+      </div>
+
+      <div class="now-card">
+        <div class="now-status">
+          <span class="status-dot"></span>
+          <span>September 2026</span>
+        </div>
+        <p class="now-lead">Currently studying for an MSc in Data-Intensive Analysis at St Andrews.</p>
+        <p class="now-copy">
+          This semester I'm developing my knowledge of statistical modelling, data analysis
+          and statistical computing while continuing to use the programming and mathematical
+          skills from my undergraduate degree.
+        </p>
+        <div class="now-footer">
+          <span>Looking for</span>
+          <strong>Graduate roles in data, analytics and quantitative work</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section" id="notes" aria-labelledby="notes-title">
+      <div class="section-heading">
+        <p class="section-index">04</p>
+        <h2 id="notes-title">Notes</h2>
+        <p class="section-summary">Occasional writing about programming, data and things I'm learning.</p>
+      </div>
+
       <div class="posts">
-        {recentPosts.map((post) => (
-          <a href={`/notes/${post.id}`} class="post">
-            <span class="post-title">{post.data.title}</span>
-            <span class="post-date">
-              {post.data.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
-            </span>
+        {posts.map((post) => (
+          <a href={`/log/${post.id}`} class="post">
+            <div>
+              <h3>{post.data.title}</h3>
+              {post.data.description && <p>{post.data.description}</p>}
+            </div>
+            <span>{post.data.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</span>
           </a>
         ))}
       </div>
     </section>
+  
 
     <Footer client:load />
   </main>
 </Layout>
 
 <style>
-    @import '../styles/index.css';
+  @import '../styles/index.css';
 </style>

@@ -7,5 +7,12 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), sitemap()]
+  site: 'https://fmcewan.dev',
+  integrations: [react(), sitemap()],
+  redirects: {
+    '/about': '/#about',
+    '/projects': '/#projects',
+    '/now': '/#now',
+    '/log': '/#notes',
+  },
 });

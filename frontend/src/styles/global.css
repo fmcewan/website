@@ -17,11 +17,17 @@ html, body {
   width: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
 body {
   font-family: var(--font-mono);
   background: #0f0f0f;
   color: #f2f4f8;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a {
@@ -40,10 +46,9 @@ nav > div {
 }
 
 .container {
-  width: 95%;
+  width: min(92%, 1240px);
   margin: 0 auto;
-  max-width: 1400px;
-  padding: 3rem 2.5rem 4rem;
+  padding: 0 0 4rem;
 }
 
 .section {
@@ -75,6 +80,18 @@ nav > div {
   border-radius: 3px;
 }
 
-.scroll-behavior {
-  scroll-behavior: smooth;
+::selection { background: rgba(120, 169, 255, 0.25); }
+
+:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

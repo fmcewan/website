@@ -1,33 +1,30 @@
----
-const path = Astro.url.pathname
----
-
-<nav class="nav" id="site-nav">
-  <a href="/" class={path === '/' ? 'logo active' : 'logo'}>fmcewan.dev</a>
+<nav class="nav" id="site-nav" aria-label="Main navigation">
+  <a href="/#top" class="logo">fmcewan.dev</a>
 
   <ul class="links">
-    <li><a href="/projects" class={path.startsWith('/projects') ? 'link-accent active' : 'link-accent'}>projects</a></li>
-    <li><a href="/about" class={path === '/about' ? 'link active' : 'link'}>about</a></li>
-    <li><a href="/now" class={path === '/now' ? 'link active' : 'link'}>now</a></li>
-    <li><a href="/log" class={path.startsWith('/log') ? 'link active' : 'link'}>log</a></li>
+    <li><a href="/#contact" data-section="contact" class="contact-link">contact</a></li>
+    <li><a href="/#about" data-section="about">about</a></li>
+    <li><a href="/#projects" data-section="projects">projects</a></li>
+    <li><a href="/#now" data-section="now">now</a></li>
+    <li><a href="/#notes" data-section="notes">notes</a></li>
   </ul>
 
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+  <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
 
   <div class="mobile-menu" id="mobile-menu">
-    <a href="/projects" class={path.startsWith('/projects') ? 'mobile-link active' : 'mobile-link'}>projects</a>
-    <a href="/about" class={path === '/about' ? 'mobile-link active' : 'mobile-link'}>about</a>
-    <a href="/now" class={path === '/now' ? 'mobile-link active' : 'mobile-link'}>now</a>
-    <a href="/log" class={path.startsWith('/log') ? 'mobile-link active' : 'mobile-link'}>log</a>
+    <a href="/#about">about</a>
+    <a href="/#projects">projects</a>
+    <a href="/#now">now</a>
+    <a href="/#notes">notes</a>
+    <a href="/#contact">contact</a>
   </div>
 </nav>
 
 <style>
-  /* ── Layout ── */
   .nav {
     position: sticky;
     top: 0;
@@ -35,85 +32,69 @@ const path = Astro.url.pathname
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 0;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-    transition: all 0.2s ease;
+    min-height: 72px;
+    margin-bottom: 2rem;
+    transition: min-height 0.2s ease;
   }
 
-  /* Frosted glass background on scroll */
   .nav::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -2.5rem;
-    right: -2.5rem;
-    bottom: 0;
-    background: rgba(10, 15, 20, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    inset: 0 -2.5rem;
+    background: rgba(15, 15, 15, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
     opacity: 0;
     transition: opacity 0.2s ease;
     z-index: -1;
   }
 
-  .nav.scrolled::before {
-    opacity: 1;
-  }
+  .nav.scrolled { min-height: 58px; }
+  .nav.scrolled::before { opacity: 1; }
 
-  /* ── Logo ── */
   .logo {
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.04em;
     color: #f2f4f8;
-    text-decoration: none;
   }
 
-  .logo.active { color: #78a9ff; }
+  .logo::after { content: '_'; color: var(--accent); }
 
-  /* ── Desktop links ── */
   .links {
     display: flex;
-    gap: 2rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    align-items: center;
+    gap: 1.8rem;
   }
 
-  .link {
-    font-size: 12px;
+  .links a {
+    font-size: 11px;
     color: #8b9ab0;
-    letter-spacing: 0.06em;
-    text-decoration: none;
+    letter-spacing: 0.07em;
     transition: color 0.15s;
   }
 
-  .link:hover,
-  .link.active { color: #f2f4f8; }
+  .links a:hover,
+  .links a.active { color: #f2f4f8; }
 
-  .link-accent {
-    font-size: 13px;
-    font-weight: 500;
-    color: #f2f4f8;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    transition: color 0.15s;
+  .links .contact-link {
+    color: var(--accent);
+    border: 0.5px solid rgba(120, 169, 255, 0.4);
+    border-radius: 3px;
+    padding: 0.45rem 0.8rem;
   }
 
-  .link-accent:hover,
-  .link-accent.active { color: #78a9ff; }
+  .links .contact-link:hover { background: rgba(120, 169, 255, 0.08); }
 
-  /* ── Hamburger ── */
   .hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
     background: none;
-    border: none;
+    border: 0;
     cursor: pointer;
-    padding: 4px;
+    padding: 6px;
   }
 
   .bar {
@@ -121,39 +102,36 @@ const path = Astro.url.pathname
     width: 20px;
     height: 1px;
     background: #8b9ab0;
-    transition: all 0.2s;
+    transition: transform 0.2s, opacity 0.2s;
   }
 
   .hamburger.open .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
   .hamburger.open .bar:nth-child(2) { opacity: 0; }
   .hamburger.open .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-  /* ── Mobile menu ── */
   .mobile-menu {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: -1.5rem;
+    right: -1.5rem;
     flex-direction: column;
-    width: 100%;
-    border-top: 0.5px solid rgba(255, 255, 255, 0.08);
-    margin-top: 1rem;
+    padding: 0.5rem 1.5rem 1rem;
+    background: rgba(15, 15, 15, 0.97);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
   }
 
   .mobile-menu.open { display: flex; }
 
-  .mobile-link {
-    display: block;
+  .mobile-menu a {
     padding: 0.9rem 0;
-    font-size: 13px;
+    font-size: 12px;
     color: #8b9ab0;
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
-    transition: color 0.15s;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
   }
 
-  .mobile-link:hover,
-  .mobile-link.active { color: #78a9ff; }
+  .mobile-menu a:last-child { color: var(--accent); border-bottom: 0; }
 
-  /* ── Responsive ── */
   @media (max-width: 768px) {
     .links { display: none; }
     .hamburger { display: flex; }
@@ -161,16 +139,46 @@ const path = Astro.url.pathname
 </style>
 
 <script>
-  const nav = document.querySelector('nav')
+  const nav = document.getElementById('site-nav')
   const hamburger = document.getElementById('hamburger')
   const menu = document.getElementById('mobile-menu')
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-section]')
+  const sections = document.querySelectorAll<HTMLElement>('main > section[id]')
 
-  window.addEventListener('scroll', () => {
-    nav?.classList.toggle('scrolled', window.scrollY > 10)
-  })
+  const updateScrolledState = () => nav?.classList.toggle('scrolled', window.scrollY > 16)
+  updateScrolledState()
+  window.addEventListener('scroll', updateScrolledState, { passive: true })
 
   hamburger?.addEventListener('click', () => {
-    hamburger.classList.toggle('open')
-    menu?.classList.toggle('open')
+    const isOpen = hamburger.classList.toggle('open')
+    menu?.classList.toggle('open', isOpen)
+    hamburger.setAttribute('aria-expanded', String(isOpen))
+    hamburger.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation')
   })
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      hamburger?.classList.remove('open')
+      menu.classList.remove('open')
+      hamburger?.setAttribute('aria-expanded', 'false')
+    })
+  })
+
+  if (sections.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+
+        if (!visible) return
+        navLinks.forEach((link) => {
+          link.classList.toggle('active', link.dataset.section === visible.target.id)
+        })
+      },
+      { rootMargin: '-25% 0px -60% 0px', threshold: [0, 0.1, 0.5] },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+  }
 </script>
